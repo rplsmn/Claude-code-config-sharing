@@ -14,6 +14,8 @@ claude-configs/
 ├── implementation-log.md      # Living log of what's implemented (READ THIS FIRST)
 ├── qa-review.md              # QA review findings and recommendations
 ├── CLAUDE.md                 # This file
+├── persona-coding.md         # Coding agent persona and best practices
+├── persona-review.md         # Review agent persona and best practices
 ├── install.sh                # Installation script (Phase 1)
 ├── update.sh                 # Update script (Phase 1)
 ├── dot_claude/               # Config files to deploy
@@ -46,11 +48,16 @@ This project solves the problem of managing Claude Code configurations across mu
 2. `implementation-log.md` - See current status and next tasks
 3. `qa-review.md` - Review quality standards and previous findings
 4. This file (CLAUDE.md) - Understand project-specific practices
+5. **Your persona file:**
+   - **Coding agents:** Read `persona-coding.md` for coding best practices and workflow
+   - **Review agents:** Read `persona-review.md` for review standards and checklist
 
 ### Workflow for Coding Agent
 
+**IMPORTANT: If you are the coding agent, read `persona-coding.md` for comprehensive coding guidelines, shell script standards, and workflow details.**
+
 **Starting a work session:**
-1. Read the three instruction files above
+1. Read the instruction files above (including persona-coding.md)
 2. Create a todo list with TodoWrite for your planned work
 3. Mark the current task as in_progress
 4. Do the work incrementally, updating todos as you go
@@ -106,11 +113,13 @@ EOF
 
 ### Workflow for Reviewer Agent
 
+**IMPORTANT: If you are the review agent, read `persona-review.md` for comprehensive review guidelines, quality checklists, and feedback templates.**
+
 **Starting a review session:**
-1. Read plan.md, implementation-log.md, qa-review.md
+1. Read plan.md, implementation-log.md, qa-review.md (including persona-review.md)
 2. Check git diff to see what changed
 3. Create todo list for review tasks
-4. Follow review checklists in qa-review.md
+4. Follow review checklists in qa-review.md and persona-review.md
 5. Document findings in qa-review.md
 6. Update implementation-log.md if issues found
 7. Commit qa-review.md updates
@@ -326,6 +335,8 @@ git push -u origin claude/config-management-system-hEF7I
 - `plan.md` - Overall architecture
 - `implementation-log.md` - Current status, next tasks
 - `qa-review.md` - Quality standards, previous issues
+- `persona-coding.md` - Coding agent guidelines (for coders)
+- `persona-review.md` - Review agent guidelines (for reviewers)
 
 **Before starting work:**
 1. Read instruction files
