@@ -395,7 +395,12 @@ Updated implementation-log.md to mark task 1.4 complete.
 
 ### 7. Branch and PR Workflow
 
-**Branch:** Always work on `claude/config-management-system-hEF7I`
+**Branching strategy:**
+- Claude creates a NEW branch for each task/session automatically
+- Branch naming: `claude/descriptive-task-name-XXXXX`
+- Always push to the current branch (not main)
+- After review and validation: Merge PR to `main`
+- After merge: Delete the feature branch
 
 **Before pushing:**
 - Ensure all todos are completed or updated
@@ -405,7 +410,8 @@ Updated implementation-log.md to mark task 1.4 complete.
 
 **Push with retry:**
 ```bash
-git push -u origin claude/config-management-system-hEF7I
+# Push to current branch (Claude creates these automatically)
+git push -u origin $(git branch --show-current)
 # If network error, retry with exponential backoff
 ```
 
@@ -414,6 +420,7 @@ git push -u origin claude/config-management-system-hEF7I
 - Body: Summary bullets + Test plan checklist
 - Link to relevant issues
 - Tag for human review
+- **Target: main branch**
 
 ### 8. Handling Unknowns
 
@@ -439,8 +446,8 @@ git push -u origin claude/config-management-system-hEF7I
 4. **UPDATE LOGS** - Always update implementation-log.md after completing work
 5. **COMMIT REGULARLY** - Commit after completing each discrete task
 6. **TEST BEFORE COMMIT** - Verify changes work before committing
-7. **PUSH TO CORRECT BRANCH** - Always use `claude/config-management-system-hEF7I`
-8. **CREATE PRS** - Open PR at end of session for human review
+7. **PUSH TO CURRENT BRANCH** - Push to the branch Claude created (not main)
+8. **CREATE PRS** - Open PR targeting main at end of session for human review
 
 **NEVER:**
 - Skip reading instruction files
@@ -495,8 +502,11 @@ grep "Current phase" implementation-log.md
 # See next task
 grep "Next Steps for Coding Agent" implementation-log.md
 
-# Push with retry
-git push -u origin claude/config-management-system-hEF7I
+# Check current branch
+git branch --show-current
+
+# Push to current branch
+git push -u origin $(git branch --show-current)
 ```
 
 ---
