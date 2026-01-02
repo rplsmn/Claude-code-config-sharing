@@ -81,6 +81,39 @@
 
 ---
 
+### Researcher Persona & Command (2026-01-02)
+
+**Files Created:**
+- `persona-researcher.md` - Comprehensive researcher agent reference (500+ lines)
+- `dot_claude/commands/research.md` - Research workflow slash command (280+ lines)
+
+**Why:**
+- Enable systematic investigation of solutions, frameworks, and best practices
+- Support lead agent with architecture and tool evaluation research
+- Support coding agent with debugging, framework, and configuration research
+- Provide templates for research reports and decision matrices
+- Establish quality standards for information gathering and analysis
+
+**Features:**
+- 6 research types (architecture, frameworks, best practices, debugging, config, compatibility)
+- Research process workflow (understand → gather → analyze → document → report)
+- Decision matrix templates for comparing alternatives
+- Source quality evaluation framework
+- Communication templates for different agent types
+- Integration with WebSearch, WebFetch, Task/Explore, Grep, Read tools
+
+**Testing Status:** ⚠️ Not deployed/tested yet
+- Same deployment issues as other slash commands
+- Needs deployment mechanism or manual instructions
+
+**Notes:**
+- Requested by user to support delegated research tasks
+- Complements lead/coding/review personas
+- Enables evidence-based decision making
+- Documentation saved to docs/research/[category]/ structure
+
+---
+
 ## In Progress
 
 ### Fixing Review Findings (2026-01-02)
