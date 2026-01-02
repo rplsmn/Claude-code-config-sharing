@@ -16,13 +16,15 @@ claude-configs/
 ├── CLAUDE.md                 # This file
 ├── persona-coding.md         # Coding agent reference (comprehensive)
 ├── persona-review.md         # Review agent reference (comprehensive)
+├── persona-lead.md           # Lead/architect reference (comprehensive)
 ├── install.sh                # Installation script (Phase 1)
 ├── update.sh                 # Update script (Phase 1)
 ├── dot_claude/               # Config files to deploy
 │   ├── CLAUDE.md            # Global Claude configuration
 │   ├── commands/            # Slash commands
 │   │   ├── code.md         # /code - Activate coding workflow
-│   │   └── review.md       # /review - Activate review workflow
+│   │   ├── review.md       # /review - Activate review workflow
+│   │   └── lead.md         # /lead - Activate architect/planning mode
 │   ├── personas/            # Claude personas (future)
 │   └── skills/              # Claude Skills (future)
 └── docs/                    # Documentation (future)
@@ -54,6 +56,7 @@ This project solves the problem of managing Claude Code configurations across mu
 **Then activate your role:**
 - **Coding agents:** Use `/code` command (references `persona-coding.md` for comprehensive details)
 - **Review agents:** Use `/review` command (references `persona-review.md` for comprehensive details)
+- **Lead/Architect agents:** Use `/lead` command (references `persona-lead.md` for comprehensive details)
 
 ### Workflow for Coding Agent
 
@@ -131,6 +134,47 @@ The `/review` command (in `dot_claude/commands/review.md`) provides:
 - Documentation clarity
 - Testing evidence
 - Usability
+
+---
+
+### Workflow for Lead/Architect Agent
+
+**IMPORTANT: Use the `/lead` slash command to activate architect/planning mode.**
+
+The `/lead` command (in `dot_claude/commands/lead.md`) provides:
+- Architectural decision process (7 steps)
+- Design principles to apply
+- Technology evaluation framework
+- Risk management guidelines
+- Pre-release review checklist
+
+**For comprehensive details, see `persona-lead.md`** (500+ lines covering):
+- Complete decision process with templates
+- Design principles with applications
+- Risk management framework
+- Technology evaluation criteria
+- Architectural patterns and anti-patterns
+- Communication templates (ADRs, implementation plans)
+- Scale planning considerations
+
+**Quick workflow summary:**
+1. Read: plan.md → implementation-log.md → qa-review.md → CLAUDE.md → persona-lead.md
+2. Define problem clearly (stakeholders, constraints, success criteria)
+3. Research existing solutions and best practices
+4. Generate 3+ alternatives with trade-offs
+5. Evaluate using decision matrix
+6. Document decision with ADR
+7. Create phased implementation plan
+8. Update project docs (implementation-log.md, plan.md)
+
+**Key responsibilities:**
+- Strategic thinking and architectural decisions
+- Evaluate trade-offs before choosing approaches
+- Create clear implementation plans for coding agents
+- Review major changes before releases
+- Manage technical debt consciously
+- Provide direction to the team
+- Think long-term while being pragmatic
 
 ---
 
@@ -322,10 +366,12 @@ git push -u origin claude/config-management-system-hEF7I
   - References `persona-coding.md` for comprehensive details
 - **Review agents:** `/review` command (see `dot_claude/commands/review.md`)
   - References `persona-review.md` for comprehensive details
+- **Lead/Architect agents:** `/lead` command (see `dot_claude/commands/lead.md`)
+  - References `persona-lead.md` for comprehensive details
 
 **Before starting work:**
 1. Read instruction files (plan.md, implementation-log.md, qa-review.md, CLAUDE.md)
-2. Use `/code` or `/review` command to activate workflow
+2. Use `/code`, `/review`, or `/lead` command to activate workflow
 3. Create todo list with TodoWrite
 4. Mark task in_progress
 
