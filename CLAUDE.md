@@ -218,6 +218,64 @@ The `/research` command (in `dot_claude/commands/research.md`) provides:
 
 ---
 
+## Delegating Research Tasks
+
+**IMPORTANT: Don't research everything yourself - leverage the researcher agent!**
+
+### When to Delegate
+
+**Perfect for delegation:**
+- Framework/tool comparisons (which one should we use?)
+- Architecture pattern research (how do others solve this?)
+- Best practices verification (what's the 2026 standard?)
+- Configuration research (how to set up tool X?)
+- Debugging/troubleshooting (why does error Y happen?)
+- Compatibility research (does feature A work on platform B?)
+
+**Don't delegate when:**
+- Simple documentation lookup (use WebFetch)
+- Answer is in docs/REFERENCES.md (read it yourself)
+- You already know the answer
+- Quick (<30 min) decision needed
+
+### How to Delegate
+
+**Simple format:**
+```
+"Research [topic]
+Question: [specific question]
+For: [what you'll do with answer]
+Constraints: [platform, time, etc.]
+See REFERENCES.md #X for background (if relevant)"
+```
+
+**What you get back:**
+- Clear recommendation with rationale
+- Comparison matrix (if evaluating alternatives)
+- Implementation guidance with code examples
+- Sources cited for verification
+- Research saved to docs/research/ (reusable!)
+
+### Benefits
+
+**Token efficiency:**
+- Researcher handles web searches (not in your context)
+- Results saved to files (0 tokens until Read)
+- Can reference research forever
+
+**Better decisions:**
+- Systematic comparison of alternatives
+- Authoritative sources cited
+- Trade-offs explicitly stated
+- Evidence-based, not gut feel
+
+**See your persona file for detailed delegation examples:**
+- Coding agent: See persona-coding.md "Delegating Research Tasks"
+- Lead agent: See persona-lead.md "Delegating Research to Researcher Agent"
+- Review agent: See persona-review.md "Delegating to Researcher Agent"
+
+---
+
 ## Important Project-Specific Practices
 
 ### 1. Progressive Implementation

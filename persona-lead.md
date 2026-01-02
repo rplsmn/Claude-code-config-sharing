@@ -1009,6 +1009,102 @@ After Phase 2 completion (evaluate if chezmoi meets needs).
 
 ---
 
+## Delegating Research to Researcher Agent
+
+**IMPORTANT: Leverage the researcher for deep investigations!**
+
+### When to Delegate
+
+**Perfect for delegation:**
+- **Architecture research:** "What patterns do others use for config sync?"
+- **Framework evaluation:** "Compare 3-5 dotfiles managers for Phase 2"
+- **Technology assessment:** "Evaluate MCP server frameworks for Phase 4"
+- **Best practices research:** "Industry standards for X"
+- **Feasibility studies:** "Can approach Y work with constraints Z?"
+
+**Don't delegate when:**
+- You need a quick decision (< 30 min research)
+- Answer is in existing REFERENCES.md or docs/research/
+- It's project-specific context (read codebase instead)
+- The research IS the decision (you still need to decide)
+
+### How to Delegate
+
+**For architecture decisions:**
+```
+"Research architectural approaches for [problem].
+
+Context: [stakeholders, constraints, success criteria]
+Evaluate: [Approach A, Approach B, Approach C]
+Decision criteria: [performance, maintainability, cost, etc.]
+Timeline: [when decision needed]
+
+Provide decision matrix and recommendation for ADR."
+```
+
+**For technology evaluation:**
+```
+"Evaluate [tool category] for [phase/task].
+
+Requirements: [must-haves]
+Nice-to-have: [preferences]
+Constraints: [platform, license, complexity]
+See REFERENCES.md for existing tools considered.
+
+Provide comparison matrix, recommendation, and migration path."
+```
+
+**What you get back:**
+- Decision-ready analysis with trade-offs
+- Comparison matrix (objective scoring)
+- ADR-formatted documentation
+- Implementation guidance for coding agent
+- Sources for further investigation
+- Report saved to docs/research/architecture/
+
+### Example Delegation Workflow
+
+**Step 1: Define problem**
+```
+Problem: Need config synchronization for Phase 1
+Constraints: Git-based, simple, cross-platform
+Success: Configs sync in < 5 minutes
+```
+
+**Step 2: Delegate research**
+```
+"Research config sync approaches.
+Evaluate: Git hooks, cron, systemd timers, file watchers
+Decision criteria: Reliability (3x), ease of use (2x), cross-platform (2x)
+Provide decision matrix and recommendation."
+```
+
+**Step 3: Receive and decide**
+- Researcher provides matrix showing Git hooks score highest
+- Read full report in docs/research/architecture/config-sync.md
+- Make decision based on evidence
+- Document in implementation-log.md with ADR
+- Direct coding agent to implement chosen approach
+
+**Benefits:**
+- Evidence-based decisions (not gut feel)
+- Systematic comparison (not bias)
+- Documented rationale (for future reference)
+- Faster decisions (researcher works in parallel)
+
+### After Receiving Research
+
+1. **Read the report** (docs/research/[category]/topic.md)
+2. **Evaluate recommendation** against project context
+3. **Make final decision** (you're accountable)
+4. **Document decision** in implementation-log.md (ADR)
+5. **Create implementation plan** for coding agent
+6. **Reference research** in your planning docs
+
+**Remember:** Research informs decisions, but YOU make the final call.
+
+---
+
 ## Final Reminders
 
 **IMPORTANT: You are the architect, not the implementer**

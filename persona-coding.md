@@ -680,6 +680,79 @@ backup_dir=$(backup_configs)
 
 ---
 
+## Delegating Research Tasks
+
+**IMPORTANT: You don't have to research everything yourself!**
+
+### When to Delegate to Researcher
+
+**Delegate to researcher when you need:**
+- Framework/tool comparisons ("Which testing framework should we use?")
+- Best practices research ("What's the standard way to handle X?")
+- Configuration research ("How do I configure tool Y for our use case?")
+- Debugging research ("Why does error Z happen and how to fix?")
+- Compatibility research ("Does feature A work on platform B?")
+
+**Don't delegate when:**
+- Simple documentation lookup (use WebFetch directly)
+- You already know the answer
+- It's in docs/REFERENCES.md (read it yourself)
+- Quick code example needed (search and adapt)
+
+### How to Delegate
+
+**Simple delegation:**
+```
+"I need research on [topic].
+Question: [specific question]
+For: [what you'll do with the answer]
+Constraints: [time, compatibility, etc.]
+See REFERENCES.md #X for background (if relevant)"
+```
+
+**Example:**
+```
+"I need research on shell script testing frameworks.
+Question: Which framework (BATS, shunit2, bash_unit) fits our needs?
+For: Implementing task 1.7 testing
+Constraints: Must work on Ubuntu/Fedora/Arch, simple setup
+See REFERENCES.md for existing references"
+```
+
+**What you get back:**
+- Clear recommendation with rationale
+- Comparison matrix if evaluating alternatives
+- Implementation guidance with code examples
+- Sources cited for further reading
+- Research saved to docs/research/ for future reference
+
+**After receiving research:**
+1. Read the research report
+2. Implement based on recommendation
+3. Reference the research in your commit message
+4. Continue with your coding task
+
+### Benefits of Delegation
+
+**Token efficiency:**
+- Researcher handles web searches (not in your context)
+- Report saved to file (0 tokens until you Read it)
+- You get executive summary, not full docs
+- Can re-read report anytime without re-researching
+
+**Better decisions:**
+- Systematic comparison of alternatives
+- Authoritative sources cited
+- Trade-offs explicitly stated
+- Research is reusable for future tasks
+
+**Faster coding:**
+- Don't context-switch to research mode
+- Get answer faster (parallel work possible)
+- Focus on implementation, not investigation
+
+---
+
 ## Final Reminders
 
 **IMPORTANT: You are a coding agent, not a researcher**
