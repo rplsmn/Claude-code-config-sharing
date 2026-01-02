@@ -14,16 +14,20 @@ claude-configs/
 ├── implementation-log.md      # Living log of what's implemented (READ THIS FIRST)
 ├── qa-review.md              # QA review findings and recommendations
 ├── CLAUDE.md                 # This file
-├── persona-coding.md         # Coding agent persona and best practices
-├── persona-review.md         # Review agent persona and best practices
+├── persona-coding.md         # Coding agent reference (comprehensive)
+├── persona-review.md         # Review agent reference (comprehensive)
+├── persona-lead.md           # Lead/architect reference (comprehensive)
 ├── install.sh                # Installation script (Phase 1)
 ├── update.sh                 # Update script (Phase 1)
 ├── dot_claude/               # Config files to deploy
 │   ├── CLAUDE.md            # Global Claude configuration
 │   ├── commands/            # Slash commands
-│   ├── personas/            # Claude personas
-│   └── skills/              # Claude Skills
-└── docs/                    # Documentation
+│   │   ├── code.md         # /code - Activate coding workflow
+│   │   ├── review.md       # /review - Activate review workflow
+│   │   └── lead.md         # /lead - Activate architect/planning mode
+│   ├── personas/            # Claude personas (future)
+│   └── skills/              # Claude Skills (future)
+└── docs/                    # Documentation (future)
 ```
 
 ---
@@ -48,108 +52,129 @@ This project solves the problem of managing Claude Code configurations across mu
 2. `implementation-log.md` - See current status and next tasks
 3. `qa-review.md` - Review quality standards and previous findings
 4. This file (CLAUDE.md) - Understand project-specific practices
-5. **Your persona file:**
-   - **Coding agents:** Read `persona-coding.md` for coding best practices and workflow
-   - **Review agents:** Read `persona-review.md` for review standards and checklist
+
+**Then activate your role:**
+- **Coding agents:** Use `/code` command (references `persona-coding.md` for comprehensive details)
+- **Review agents:** Use `/review` command (references `persona-review.md` for comprehensive details)
+- **Lead/Architect agents:** Use `/lead` command (references `persona-lead.md` for comprehensive details)
 
 ### Workflow for Coding Agent
 
-**IMPORTANT: If you are the coding agent, read `persona-coding.md` for comprehensive coding guidelines, shell script standards, and workflow details.**
+**IMPORTANT: Use the `/code` slash command to activate coding workflow.**
 
-**Starting a work session:**
-1. Read the instruction files above (including persona-coding.md)
-2. Create a todo list with TodoWrite for your planned work
-3. Mark the current task as in_progress
-4. Do the work incrementally, updating todos as you go
-5. Update implementation-log.md when task is complete
-6. Commit changes with descriptive message
-7. Push to branch: `claude/config-management-system-hEF7I`
-8. Open PR for human review
+The `/code` command (in `dot_claude/commands/code.md`) provides:
+- Session startup checklist (what to read first)
+- Core workflow and standards
+- Shell scripting patterns
+- Testing requirements
+- Commit and push guidelines
 
-**During work:**
+**For comprehensive details, see `persona-coding.md`** (400+ lines covering):
+- Detailed workflow explanations
+- Shell scripting templates and patterns
+- Anti-patterns with good/bad examples
+- Testing requirements and validation commands
+- Problem-solving approaches
+- Quality standards and success metrics
+
+**Quick workflow summary:**
+1. Read: plan.md → implementation-log.md → qa-review.md → CLAUDE.md → persona-coding.md
+2. Create TodoWrite list, mark ONE task in_progress
+3. Test thoroughly before committing
+4. Update implementation-log.md when complete
+5. Commit and push to branch
+6. Create PR for human review
+
+**Key practices:**
 - ALWAYS use TodoWrite to track progress
 - Mark only ONE task as in_progress at a time
 - Complete tasks fully before starting new ones
 - Update implementation-log.md after completing each major task
 - Test your changes before committing
-
-**Example workflow:**
-```bash
-# After finishing implementation of install.sh:
-# 1. Update implementation-log.md
-# 2. Commit your work
-git add install.sh implementation-log.md
-git commit -m "feat: implement install.sh with backup and rollback
-
-- Add error handling with set -euo pipefail
-- Backup existing configs before install
-- Rollback mechanism on failure
-- Dry-run mode for testing
-- Cross-platform support
-
-Updated implementation-log.md with completion status."
-
-# 3. Push to branch
-git push -u origin claude/config-management-system-hEF7I
-
-# 4. Create PR (if session complete)
-gh pr create --title "Phase 1: Core installation script" --body "$(cat <<'EOF'
-## Summary
-- Implemented install.sh with full error handling
-- Added backup and rollback mechanisms
-- Tested on Ubuntu and Fedora
-
-## Test plan
-- [ ] Test fresh install on Ubuntu
-- [ ] Test fresh install on Fedora
-- [ ] Test with existing configs (should backup)
-- [ ] Test rollback on failure
-- [ ] Test dry-run mode
-EOF
-)"
-```
+- Run shellcheck on bash scripts
+- Quote all variables in shell scripts
 
 ---
 
 ### Workflow for Reviewer Agent
 
-**IMPORTANT: If you are the review agent, read `persona-review.md` for comprehensive review guidelines, quality checklists, and feedback templates.**
+**IMPORTANT: Use the `/review` slash command to activate review workflow.**
 
-**Starting a review session:**
-1. Read plan.md, implementation-log.md, qa-review.md (including persona-review.md)
+The `/review` command (in `dot_claude/commands/review.md`) provides:
+- Session startup checklist (what to read first)
+- 7-step review checklist (acceptance criteria → code → config → security → docs → testing → usability)
+- Issue categorization (Critical/Important/Suggestion)
+- Feedback writing guidelines
+- After-review checklist
+
+**For comprehensive details, see `persona-review.md`** (450+ lines covering):
+- Detailed review workflow and checklists
+- Review feedback templates
+- Shell scripting anti-patterns to watch for
+- Configuration and documentation anti-patterns
+- Decision framework (when to approve/request changes/block)
+- Quality metrics to track
+- Common issues with solutions
+
+**Quick workflow summary:**
+1. Read: plan.md → implementation-log.md → qa-review.md → CLAUDE.md → persona-review.md
 2. Check git diff to see what changed
-3. Create todo list for review tasks
-4. Follow review checklists in qa-review.md and persona-review.md
+3. Create TodoWrite list for review tasks
+4. Execute review checklist in order
 5. Document findings in qa-review.md
 6. Update implementation-log.md if issues found
-7. Commit qa-review.md updates
-8. Add PR review comments
+7. Commit review documentation
+8. Provide specific, constructive feedback
 
 **Review focus areas:**
-- Shell script quality (error handling, quoting, idempotency)
-- Config file best practices (concise, universally applicable)
-- Documentation clarity (step-by-step, examples)
-- Security (no hardcoded secrets, safe operations)
-- Cross-platform compatibility
-- Test coverage
+- Acceptance criteria met
+- Shell script quality (shellcheck, quoting, error handling)
+- Config file best practices
+- Security (no secrets, safe operations)
+- Documentation clarity
+- Testing evidence
+- Usability
 
-**Example review workflow:**
-```bash
-# After reviewing install.sh:
-# 1. Update qa-review.md with findings
-# 2. Commit review
-git add qa-review.md
-git commit -m "review: install.sh implementation
+---
 
-Found 2 issues:
-- Missing input validation for custom install path
-- Should check for shellcheck before committing
+### Workflow for Lead/Architect Agent
 
-Otherwise looks good. Approved with minor changes."
+**IMPORTANT: Use the `/lead` slash command to activate architect/planning mode.**
 
-# 3. If issues found, update implementation-log.md
-# 4. Push and add PR comments
-```
+The `/lead` command (in `dot_claude/commands/lead.md`) provides:
+- Architectural decision process (7 steps)
+- Design principles to apply
+- Technology evaluation framework
+- Risk management guidelines
+- Pre-release review checklist
+
+**For comprehensive details, see `persona-lead.md`** (500+ lines covering):
+- Complete decision process with templates
+- Design principles with applications
+- Risk management framework
+- Technology evaluation criteria
+- Architectural patterns and anti-patterns
+- Communication templates (ADRs, implementation plans)
+- Scale planning considerations
+
+**Quick workflow summary:**
+1. Read: plan.md → implementation-log.md → qa-review.md → CLAUDE.md → persona-lead.md
+2. Define problem clearly (stakeholders, constraints, success criteria)
+3. Research existing solutions and best practices
+4. Generate 3+ alternatives with trade-offs
+5. Evaluate using decision matrix
+6. Document decision with ADR
+7. Create phased implementation plan
+8. Update project docs (implementation-log.md, plan.md)
+
+**Key responsibilities:**
+- Strategic thinking and architectural decisions
+- Evaluate trade-offs before choosing approaches
+- Create clear implementation plans for coding agents
+- Review major changes before releases
+- Manage technical debt consciously
+- Provide direction to the team
+- Think long-term while being pragmatic
 
 ---
 
@@ -335,13 +360,20 @@ git push -u origin claude/config-management-system-hEF7I
 - `plan.md` - Overall architecture
 - `implementation-log.md` - Current status, next tasks
 - `qa-review.md` - Quality standards, previous issues
-- `persona-coding.md` - Coding agent guidelines (for coders)
-- `persona-review.md` - Review agent guidelines (for reviewers)
+
+**Activate your role:**
+- **Coding agents:** `/code` command (see `dot_claude/commands/code.md`)
+  - References `persona-coding.md` for comprehensive details
+- **Review agents:** `/review` command (see `dot_claude/commands/review.md`)
+  - References `persona-review.md` for comprehensive details
+- **Lead/Architect agents:** `/lead` command (see `dot_claude/commands/lead.md`)
+  - References `persona-lead.md` for comprehensive details
 
 **Before starting work:**
-1. Read instruction files
-2. Create todo list
-3. Mark task in_progress
+1. Read instruction files (plan.md, implementation-log.md, qa-review.md, CLAUDE.md)
+2. Use `/code`, `/review`, or `/lead` command to activate workflow
+3. Create todo list with TodoWrite
+4. Mark task in_progress
 
 **After completing work:**
 1. Update implementation-log.md
