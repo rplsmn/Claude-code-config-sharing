@@ -178,6 +178,104 @@ The `/lead` command (in `dot_claude/commands/lead.md`) provides:
 
 ---
 
+### Workflow for Researcher Agent
+
+**IMPORTANT: Use the `/research` slash command to activate research mode.**
+
+The `/research` command (in `dot_claude/commands/research.md`) provides:
+- Research process (understand → gather → analyze → document → report)
+- 6 research types (architecture, frameworks, best practices, debugging, config, compatibility)
+- Decision matrix templates
+- Source quality evaluation framework
+- Communication templates for different agent types
+
+**For comprehensive details, see `persona-researcher.md`** (500+ lines covering):
+- Research types and approaches
+- Information gathering techniques (WebSearch, WebFetch, Task/Explore)
+- Analysis frameworks (decision matrix, trade-offs)
+- Documentation templates (research reports, quick notes)
+- Source evaluation criteria
+- Communication style per agent type
+- Quality standards and anti-patterns
+
+**Quick workflow summary:**
+1. Read: plan.md → implementation-log.md → qa-review.md → CLAUDE.md → persona-researcher.md
+2. Clarify research question (what, why, for whom, constraints)
+3. Gather information from multiple sources (web + codebase)
+4. Analyze and compare alternatives systematically
+5. Document findings in docs/research/[category]/
+6. Report to requester with clear recommendation
+7. Update implementation-log.md if research informs decision
+
+**Key responsibilities:**
+- Investigate solutions, frameworks, and best practices
+- Support lead agent with architecture/tool evaluation research
+- Support coding agent with debugging/framework/config research
+- Compare alternatives using decision matrices
+- Cite sources and assess quality
+- Provide actionable recommendations
+- Document findings for future reference
+
+---
+
+## Delegating Research Tasks
+
+**IMPORTANT: Don't research everything yourself - leverage the researcher agent!**
+
+### When to Delegate
+
+**Perfect for delegation:**
+- Framework/tool comparisons (which one should we use?)
+- Architecture pattern research (how do others solve this?)
+- Best practices verification (what's the 2026 standard?)
+- Configuration research (how to set up tool X?)
+- Debugging/troubleshooting (why does error Y happen?)
+- Compatibility research (does feature A work on platform B?)
+
+**Don't delegate when:**
+- Simple documentation lookup (use WebFetch)
+- Answer is in docs/REFERENCES.md (read it yourself)
+- You already know the answer
+- Quick (<30 min) decision needed
+
+### How to Delegate
+
+**Simple format:**
+```
+"Research [topic]
+Question: [specific question]
+For: [what you'll do with answer]
+Constraints: [platform, time, etc.]
+See REFERENCES.md #X for background (if relevant)"
+```
+
+**What you get back:**
+- Clear recommendation with rationale
+- Comparison matrix (if evaluating alternatives)
+- Implementation guidance with code examples
+- Sources cited for verification
+- Research saved to docs/research/ (reusable!)
+
+### Benefits
+
+**Token efficiency:**
+- Researcher handles web searches (not in your context)
+- Results saved to files (0 tokens until Read)
+- Can reference research forever
+
+**Better decisions:**
+- Systematic comparison of alternatives
+- Authoritative sources cited
+- Trade-offs explicitly stated
+- Evidence-based, not gut feel
+
+**See your persona file for detailed delegation examples:**
+- Coding agent: See persona-coding.md "Delegating Research Tasks"
+- Lead agent: See persona-lead.md "Delegating Research to Researcher Agent"
+- Review agent: See persona-review.md "Delegating to Researcher Agent"
+
+---
+
 ## Important Project-Specific Practices
 
 ### 1. Progressive Implementation
@@ -368,19 +466,23 @@ git push -u origin claude/config-management-system-hEF7I
   - References `persona-review.md` for comprehensive details
 - **Lead/Architect agents:** `/lead` command (see `dot_claude/commands/lead.md`)
   - References `persona-lead.md` for comprehensive details
+- **Researcher agents:** `/research` command (see `dot_claude/commands/research.md`)
+  - References `persona-researcher.md` for comprehensive details
+  - For investigating solutions, frameworks, best practices, debugging
 
 **Before starting work:**
 1. Read instruction files (plan.md, implementation-log.md, qa-review.md, CLAUDE.md)
-2. Use `/code`, `/review`, or `/lead` command to activate workflow
+2. Use `/code`, `/review`, `/lead`, or `/research` command to activate workflow
 3. Create todo list with TodoWrite
 4. Mark task in_progress
 
 **After completing work:**
 1. Update implementation-log.md
 2. Update qa-review.md (if reviewer)
-3. Commit changes
-4. Push to branch
-5. Create PR
+3. Document research findings in docs/research/ (if researcher)
+4. Commit changes
+5. Push to branch
+6. Create PR
 
 **Common commands:**
 ```bash

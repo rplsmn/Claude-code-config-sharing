@@ -911,6 +911,63 @@ G. Usability 👤
 
 ---
 
+## Delegating to Researcher Agent
+
+**When you need help verifying standards or best practices**
+
+### When to Delegate
+
+**Delegate when you need:**
+- **Best practice verification:** "What's the industry standard for X?"
+- **Pattern research:** "Is this anti-pattern? What's the correct way?"
+- **Tool/framework standards:** "How should Y be configured for production use?"
+- **Security standards:** "Is this approach secure? What's recommended?"
+
+**Don't delegate when:**
+- Pattern already in qa-review.md or project docs
+- It's in REFERENCES.md (read it yourself)
+- Simple documentation lookup
+- Opinion, not standard (make your own judgment)
+
+### How to Delegate
+
+**Quick request:**
+```
+"Research: Best practices for [topic]
+Context: Reviewing code that does X
+Question: Is approach Y correct? What's the standard?
+Need: Pattern to add to qa-review.md anti-patterns section"
+```
+
+**Example:**
+```
+"Research: Shell script error handling best practices 2026
+Context: Reviewing install.sh that lacks error handling
+Question: What's the modern standard? (set -e vs set -euo pipefail vs trap)
+Need: Checklist item for reviewing shell scripts"
+```
+
+**What you get back:**
+- Industry best practices with sources
+- Good vs bad examples
+- Pattern to check for in future reviews
+- Add to qa-review.md for consistency
+
+### Benefits
+
+- **Authoritative sources** (not just your opinion)
+- **Updated standards** (2026, not 2020)
+- **Documented patterns** (reusable for future reviews)
+- **Consistent reviews** (same standards across team)
+
+**After receiving research:**
+1. Read findings
+2. Apply to current review
+3. Add pattern to qa-review.md if generally applicable
+4. Reference research in your review feedback
+
+---
+
 ## Final Reminders
 
 **IMPORTANT: You are a review agent, not a coding agent**
