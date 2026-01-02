@@ -57,6 +57,33 @@
 - **Local Copy:** Not needed (always current online)
 - **Status:** ✅ Referenced in plan.md
 
+**8. Claude Code Slash Commands Documentation**
+- **URL:** https://code.claude.com/docs/en/slash-commands
+- **Date Accessed:** 2026-01-02
+- **Summary:** Official documentation for creating custom slash commands
+- **Key Topics:** Command structure, namespacing, arguments, frontmatter, project vs personal commands
+- **Relevance:** Critical for understanding slash command deployment (Task 1.2.1)
+- **Local Copy:** Not needed (official docs)
+- **Status:** ⭐⭐⭐ Official
+
+**9. Claude Code on the Web Documentation**
+- **URL:** https://code.claude.com/docs/en/claude-code-on-the-web
+- **Date Accessed:** 2026-01-02
+- **Summary:** Official documentation for Claude Code web version
+- **Key Topics:** Web capabilities, file uploads, configuration, iOS access
+- **Relevance:** Answers user's question about iOS/web deployment (Task 1.2.1)
+- **Local Copy:** Not needed (official docs)
+- **Status:** ⭐⭐⭐ Official
+
+**10. Claude Code on the Web | Claude Blog**
+- **URL:** https://claude.com/blog/claude-code-on-the-web
+- **Date Accessed:** 2026-01-02
+- **Summary:** Official announcement of Claude Code web version launch
+- **Key Topics:** Availability, pricing, features, roadmap
+- **Relevance:** Confirms web/iOS availability and feature parity
+- **Local Copy:** Not needed (official blog)
+- **Status:** ⭐⭐⭐ Official
+
 ---
 
 ## Community Resources
@@ -121,9 +148,18 @@
 
 **These are research reports created by researcher agents and stored in docs/research/.**
 
-*None yet - will be added as research is completed*
+### Compatibility Research
 
-**Expected structure:**
+**R1. Claude Code Web Configuration Capabilities**
+- **Location:** docs/research/compatibility/claude-code-web-config.md
+- **Date:** 2026-01-02
+- **Summary:** Comprehensive research on slash command support in Claude Code Web/iOS
+- **Key Finding:** ✅ Web/iOS supports custom slash commands using same `.claude/commands/` structure
+- **Decision Impact:** Resolves deployment question for Task 1.2.1
+- **Sources:** 12 references (official docs, guides, news)
+- **Status:** 📌 Complete - answers critical deployment question
+
+**Expected structure for future reports:**
 ```
 docs/research/
 ├── architecture/          # Architecture pattern research
@@ -278,18 +314,18 @@ Agent will:
 
 ## Reference Statistics
 
-**Total references:** 7
+**Total references:** 10 (external) + 1 (internal research report)
 **By category:**
-- Claude Code: 3
+- Claude Code: 6
 - Configuration Management: 1
 - Development Tools: 1
 - Best Practices: 1
 - Community Resources: 1
 
 **By type:**
-- Official documentation: 6
+- Official documentation: 9
 - Community resources: 1
-- Internal research: 0
+- Internal research: 1
 - Saved articles: 0
 
 **Last updated:** 2026-01-02
@@ -297,6 +333,13 @@ Agent will:
 ---
 
 ## Change History
+
+### 2026-01-02 - Research: Claude Code Web Configuration
+- Added references #8, #9, #10 (Claude Code slash commands and web docs)
+- Added first internal research report (R1: Claude Code Web config)
+- Research resolved Task 1.2.1 deployment question
+- Confirmed web/iOS support for custom slash commands
+- Updated statistics (10 external refs, 1 internal report)
 
 ### 2026-01-02 - Initial Setup
 - Created REFERENCES.md structure
