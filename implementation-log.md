@@ -47,9 +47,50 @@
 
 ---
 
+### Agent Personas & Slash Commands (2026-01-02)
+
+**Files Created:**
+- `persona-coding.md` - Comprehensive coding agent reference (400+ lines)
+- `persona-review.md` - Comprehensive review agent reference (954 lines)
+- `persona-lead.md` - Comprehensive lead/architect reference (500+ lines)
+- `dot_claude/commands/code.md` - Coding workflow slash command (179 lines)
+- `dot_claude/commands/review.md` - Review workflow slash command (305 lines)
+- `dot_claude/commands/lead.md` - Architect workflow slash command (454 lines)
+
+**Why:**
+- Provide detailed guidance for agents in different roles
+- Create reusable slash commands for activating agent modes
+- Establish clear workflows and standards for each role
+- Enable progressive disclosure (commands summary, personas detail)
+
+**Testing Status:** ⚠️ Not deployed/tested yet
+- Commands exist in repository but not deployed to `~/.claude/commands/`
+- Need install script or manual deployment instructions
+- Claude Code Web compatibility not researched
+
+**QA Review Status:** ⚠️ Issues found (see qa-review.md 2026-01-02 review)
+- 🔴 Critical: Branch name references need updating (2 instances)
+- 🔴 Critical: No deployment mechanism provided
+- 🟡 Important: Claude Code Web setup not addressed
+
+**Notes:**
+- Persona files are comprehensive and well-structured
+- Good use of templates and examples throughout
+- Proper progressive disclosure architecture
+- **Action Required:** Fix critical issues before proceeding to Phase 1 tasks
+
+---
+
 ## In Progress
 
-_None currently_
+### Fixing Review Findings (2026-01-02)
+
+**Tasks:**
+1. Fix branch name references in slash commands (Critical)
+2. Provide deployment instructions or script (Critical)
+3. Research Claude Code Web configuration (Important)
+
+**See:** qa-review.md for detailed findings and recommendations
 
 ---
 
@@ -95,6 +136,37 @@ _None currently_
 - [ ] All config locations documented
 - [ ] Platform differences noted (Linux vs web)
 - [ ] File format specifications included
+
+---
+
+#### 1.2.1 Research Claude Code Web Configuration
+**Status:** Not started
+**Priority:** High (blocking user workflow)
+**Files to create:**
+- `docs/CLAUDE_WEB_SETUP.md` - Claude Code Web configuration guide
+
+**Research needed:**
+- [ ] How does Claude Code Web (via iOS app) handle slash commands?
+- [ ] Can slash commands be registered in the web interface?
+- [ ] Where do global CLAUDE.md files get configured for web?
+- [ ] What's the equivalent of `~/.claude/` for web users?
+- [ ] Are there API/settings endpoints for config management?
+- [ ] What are the limitations compared to local installation?
+- [ ] Document workarounds (using personas directly without slash commands)
+
+**Why:** Primary user is on Claude Code Web (iPhone), can't use local installation methods
+
+**Acceptance criteria:**
+- [ ] Claude Code Web configuration capabilities documented
+- [ ] Step-by-step setup guide for web/iOS users
+- [ ] Workarounds provided if features not available
+- [ ] Differences from local installation clearly noted
+- [ ] Screenshots or examples for web interface
+
+**Notes:**
+- This was discovered during QA review (2026-01-02)
+- Current documentation assumes local Linux installation only
+- User cannot deploy configs without this research
 
 ---
 
@@ -283,22 +355,36 @@ _None currently_
 
 ## Next Steps for Coding Agent
 
-**Current phase:** Phase 1 - Core Git + Script Foundation
-**Next task:** 1.2 - Document Claude Code Config Locations
+**IMPORTANT:** QA review on 2026-01-02 found critical issues. Fix these FIRST before proceeding to Phase 1 tasks.
 
-**Instructions:**
+**Current phase:** Phase 1 - Core Git + Script Foundation (on hold pending fixes)
+**Immediate priority:** Fix review findings (see "In Progress" section above)
+**Next phase task:** 1.2.1 - Research Claude Code Web Configuration (high priority)
+
+**Critical Fixes Required (do these FIRST):**
+1. Fix branch name in `dot_claude/commands/code.md:80`
+   - Change `claude/add-agent-personas-zv2PR` → `claude/review-project-phase-kfolp`
+2. Fix branch name in `dot_claude/commands/review.md:228`
+   - Change `claude/add-agent-personas-zv2PR` → `claude/review-project-phase-kfolp`
+3. Provide deployment mechanism or manual instructions
+   - Option A: Create simple deploy script (`scripts/deploy-commands.sh`)
+   - Option B: Add manual deployment instructions to README.md
+   - User needs to test the slash commands they created
+
+**After fixing critical issues:**
 1. Read plan.md to understand overall architecture
 2. Read this file to see current status
-3. Read qa-review.md for any reviewer feedback
-4. Start with task 1.2 (research config locations)
-5. Update this log when task 1.2 is complete
+3. Read qa-review.md 2026-01-02 review for detailed findings
+4. Start with task 1.2.1 (research Claude Code Web configuration) - HIGH PRIORITY
+5. Then continue with task 1.2 (document all config locations)
 6. Create todo list before starting work
 7. Commit changes when done
 
 **Research required:**
-- Test Claude Code on Linux to find exact config paths
-- Check Claude Code documentation for official config locations
-- Document differences between local and web versions
+- Claude Code Web configuration capabilities (task 1.2.1)
+- Test Claude Code on Linux to find exact config paths (task 1.2)
+- Check Claude Code documentation for official config locations (task 1.2)
+- Document differences between local and web versions (task 1.2.1)
 
 ---
 
