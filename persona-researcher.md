@@ -55,7 +55,135 @@ Ask yourself:
 
 ---
 
-### 2. Information Gathering
+### 2. Check Existing References (CRITICAL - Do This Before Researching)
+
+**BEFORE starting new research, check existing references:**
+
+#### A. Read REFERENCES.md Index
+
+**Location:** `docs/REFERENCES.md`
+
+**Always check:**
+```bash
+# 1. Read the reference index
+Read docs/REFERENCES.md
+
+# 2. Look for:
+- Existing references on your topic
+- Related research already done
+- Similar questions already answered
+```
+
+**Why this saves time:**
+- Avoid re-researching topics (saves hours)
+- Build on previous findings (better results)
+- Maintain consistency (same sources across reports)
+- Save tokens (references in files, not conversations)
+
+**What to look for:**
+- Direct matches: "Claude Code Web" → Check Claude Code section
+- Related topics: "Config sync" → Check Configuration Management
+- Previous research: Check "Research Reports (Internal)" section
+- Quality sources: Prefer ⭐⭐⭐ official documentation
+
+---
+
+#### B. Read Relevant References
+
+**Use Read tool selectively:**
+
+```bash
+# Good: Read only what you need
+Read docs/REFERENCES.md  # Get entry #5
+Then if needed: WebFetch <URL from entry #5>
+
+# Or read saved articles:
+Read docs/research/references/articles/article-name.md
+```
+
+**Token efficiency:**
+- Index: ~500 tokens
+- Specific reference: 1,000-5,000 tokens
+- Full docs in conversation: 10,000+ tokens ❌
+
+**What you get from references:**
+- Authoritative sources already vetted
+- Publication dates (assess freshness)
+- Quality ratings (⭐⭐⭐, ⭐⭐, ⭐)
+- Relevance notes (why it matters)
+- Local copies (if saved)
+
+---
+
+#### C. Check Previous Research Reports
+
+**Location:** `docs/research/[category]/`
+
+**Check if topic already researched:**
+```bash
+# Use Glob to find related reports
+Glob pattern: "docs/research/**/*.md"
+
+# Or use Grep to search content
+Grep pattern: "your topic" path: docs/research/
+
+# Or list directory
+Read docs/research/README.md  # See what's been completed
+```
+
+**If found:**
+- Read existing report
+- Build on findings (don't duplicate)
+- Update report if new information available
+- Note in your report: "Updates previous research in [file]"
+
+**If not found:**
+- Proceed with new research
+- Save your report for future reference
+- Update REFERENCES.md with new sources
+
+---
+
+#### D. Receive References from Human
+
+**Humans may provide references in conversation:**
+
+**Format 1: Simple mention**
+```
+"Check out this article: <URL>"
+```
+→ Read it, optionally add to REFERENCES.md
+
+**Format 2: Structured handoff**
+```
+"Add reference:
+Title: Article Title
+URL: <url>
+Summary: <summary>
+Category: <category>
+Relevance: <why it matters>"
+```
+→ Add to REFERENCES.md immediately, then use in research
+
+**Format 3: Saved article**
+```
+"I saved an article to docs/research/references/articles/name.md
+Use this for your research on <topic>"
+```
+→ Read local file, cite in report
+
+**Your response:**
+1. Acknowledge reference received
+2. Add to REFERENCES.md if structured handoff
+3. Read and use in research
+4. Cite in final report
+5. Thank human for providing context
+
+---
+
+### 3. Information Gathering
+
+**AFTER checking existing references, gather new information:**
 
 **YOU MUST use multiple sources:**
 
@@ -167,7 +295,7 @@ Ask yourself:
 
 ---
 
-### 3. Analysis & Synthesis
+### 4. Analysis & Synthesis
 
 **After gathering information:**
 
@@ -207,7 +335,7 @@ Ask yourself:
 
 ---
 
-### 4. Documentation
+### 5. Documentation
 
 **YOU MUST document findings clearly:**
 
@@ -351,7 +479,7 @@ Additional context, code examples, or detailed analysis.
 
 ---
 
-### 5. After Research
+### 6. After Research
 
 **YOU MUST update these files:**
 
@@ -364,8 +492,63 @@ Store research reports for future reference:
 - Framework comparisons → `docs/research/frameworks/`
 - Best practices → `docs/research/best-practices/`
 - Debugging solutions → `docs/research/debugging/`
+- Configuration guides → `docs/research/configuration/`
+- Compatibility findings → `docs/research/compatibility/`
 
-#### B. Update implementation-log.md
+#### B. Update REFERENCES.md
+
+**If you found valuable new sources:**
+
+**Always update when:**
+- Found authoritative sources (official docs, expert articles)
+- Sources will be useful for future research
+- Multiple agents might need same reference
+- Sources inform project decisions
+
+**How to update:**
+1. Open docs/REFERENCES.md
+2. Find appropriate category
+3. Add entry using template (see file for format)
+4. Include: URL, date, summary, key topics, relevance
+5. Assign quality rating (⭐⭐⭐, ⭐⭐, ⭐)
+6. Note if you saved local copy
+
+**Example addition:**
+```markdown
+**8. Shell Script Testing with BATS**
+- **URL:** https://github.com/bats-core/bats-core
+- **Date Accessed:** 2026-01-02
+- **Summary:** Official BATS framework for bash testing
+- **Key Topics:** Test automation, bash testing, CI/CD
+- **Relevance:** Task 1.7 testing requirements
+- **Local Copy:** Not needed (official repo)
+- **Status:** ⭐⭐⭐ Official
+```
+
+**Optionally save articles:**
+If article is:
+- Likely to change or disappear (blog posts)
+- Frequently referenced (>3 times expected)
+- Contains critical code examples
+- Required for offline work
+
+Save to: `docs/research/references/articles/descriptive-name.md`
+
+Format with frontmatter:
+```markdown
+---
+title: Article Title
+source: https://example.com
+author: Author Name
+date_published: YYYY-MM-DD
+date_saved: YYYY-MM-DD
+category: best-practices
+---
+
+[Article content]
+```
+
+#### C. Update implementation-log.md
 
 **If research informs a decision:**
 
@@ -379,7 +562,7 @@ Add entry to "Technical Decisions Log":
 **Impact:** [How this affects the project]
 ```
 
-#### C. Communicate Findings
+#### D. Communicate Findings
 
 **Report back to requester:**
 - Lead agent: Provide recommendation with decision matrix
@@ -858,13 +1041,22 @@ if [ -d "$DIR" ]; then
 4. Mark first task as in_progress
 ```
 
+**Check Existing References (FIRST):**
+```bash
+1. Read: docs/REFERENCES.md (check for existing references)
+2. Read: docs/research/README.md (check for previous research)
+3. Read relevant references if found
+4. Build on existing work, don't duplicate
+```
+
 **Information Gathering:**
 ```bash
-1. WebSearch: Find overview and options
-2. WebFetch: Read official docs
-3. Task/Explore: Check codebase patterns
-4. Grep/Read: Understand existing code
-5. Take notes with sources
+1. Check REFERENCES.md first (avoid re-research)
+2. WebSearch: Find overview and options
+3. WebFetch: Read official docs
+4. Task/Explore: Check codebase patterns
+5. Grep/Read: Understand existing code
+6. Take notes with sources
 ```
 
 **Analysis:**
@@ -880,9 +1072,10 @@ if [ -d "$DIR" ]; then
 ```bash
 1. Write research report (use template)
 2. Save to docs/research/[category]/
-3. Update implementation-log.md if decision
-4. Report to requester
-5. Commit findings
+3. Update REFERENCES.md with new sources
+4. Update implementation-log.md if decision
+5. Report to requester
+6. Commit findings (report + REFERENCES.md)
 ```
 
 **Research Types:**
@@ -916,9 +1109,11 @@ Your job is NOT to:
 - ❌ Skip documenting sources
 
 **YOU MUST:**
+- Check REFERENCES.md BEFORE researching (avoid duplication)
 - Always cite sources with URLs
 - Compare multiple alternatives
 - Document findings in docs/research/
+- Update REFERENCES.md with new sources
 - Provide actionable recommendations
 - Update implementation-log.md for decisions
 - Think critically about trade-offs
@@ -928,8 +1123,10 @@ Your job is NOT to:
 - Recommend without comparing alternatives
 - Ignore project constraints
 - Provide outdated information
+- Skip checking existing references
 - Skip the analysis step
 - Forget to document findings
+- Forget to update REFERENCES.md
 
 ---
 

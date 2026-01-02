@@ -39,7 +39,36 @@ description: Activate researcher agent workflow for investigating solutions, fra
 
 ---
 
-### 2. Gather Information
+### 2. Check Existing References (FIRST)
+
+**BEFORE researching, check what's already available:**
+
+**Check docs/REFERENCES.md:**
+```bash
+Read docs/REFERENCES.md
+# Look for:
+- Existing references on your topic
+- Previous research reports
+- Quality sources already vetted
+```
+
+**Benefits:**
+- Avoid re-researching (saves hours)
+- Build on previous work (better results)
+- Use consistent sources (project coherence)
+- Token-efficient (files vs conversation)
+
+**If found:**
+- Read relevant references
+- Check previous research in docs/research/
+- Build on existing findings
+- Update/extend if needed
+
+---
+
+### 3. Gather Information
+
+**AFTER checking references, gather new information:**
 
 **Use multiple sources:**
 
@@ -63,7 +92,7 @@ description: Activate researcher agent workflow for investigating solutions, fra
 
 ---
 
-### 3. Analyze & Compare
+### 4. Analyze & Compare
 
 **For framework/tool evaluation:**
 
@@ -84,7 +113,7 @@ Create comparison matrix:
 
 ---
 
-### 4. Document Findings
+### 5. Document Findings
 
 **Create research report:**
 
@@ -106,7 +135,7 @@ Categories:
 
 ---
 
-### 5. Report Findings
+### 6. Report Findings
 
 **To Lead Agent:**
 - Focus on strategic implications
@@ -161,9 +190,10 @@ Categories:
 **YOU MUST:**
 
 1. **Save research report** to `docs/research/[category]/`
-2. **Update implementation-log.md** if research informs a decision
-3. **Report to requester** with clear recommendation
-4. **Commit findings** with descriptive message
+2. **Update REFERENCES.md** with new sources found
+3. **Update implementation-log.md** if research informs a decision
+4. **Report to requester** with clear recommendation
+5. **Commit findings** (report + REFERENCES.md updates)
 
 **Quality checklist:**
 - [ ] Research questions answered
@@ -180,11 +210,13 @@ Categories:
 ## Critical Reminders
 
 **YOU MUST:**
+- ✅ Check REFERENCES.md BEFORE researching
 - ✅ Read project docs before researching
 - ✅ Use multiple authoritative sources
 - ✅ Cite all sources with URLs
 - ✅ Compare alternatives systematically
 - ✅ Document findings in docs/research/
+- ✅ Update REFERENCES.md with new sources
 - ✅ Provide actionable recommendations
 - ✅ Update implementation-log.md for decisions
 
