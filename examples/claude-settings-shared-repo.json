@@ -7,11 +7,11 @@
       "command": "bash",
       "args": [
         "-c",
-        "if [ \"$CLAUDE_CODE_REMOTE\" = \"true\" ]; then echo '[Claude Config] Deploying shared configs from GitHub...'; CONFIG_REPO='https://github.com/YOUR_USERNAME/claude-configs'; mkdir -p ~/.claude/commands ~/.claude/methodologies; if [ ! -d ~/.claude-configs ]; then git clone $CONFIG_REPO ~/.claude-configs 2>/dev/null; else cd ~/.claude-configs && git pull 2>/dev/null; fi; if [ -d ~/.claude-configs ]; then cp -v ~/.claude-configs/dot_claude/commands/*.md ~/.claude/commands/ 2>/dev/null; cp -v ~/.claude-configs/dot_claude/methodologies/*.md ~/.claude/methodologies/ 2>/dev/null; echo '[Claude Config] Deployed from shared repo. Update repo to update all projects.'; else echo '[Claude Config] Warning: Could not clone config repo. Commands not deployed.'; fi; fi"
+        "if [ \"$CLAUDE_CODE_REMOTE\" = \"true\" ]; then echo '[Claude Config] Deploying shared configs from GitHub...'; CONFIG_REPO='https://github.com/YOUR_USERNAME/claude-configs'; mkdir -p ~/.claude/commands ~/.claude/methodologies ~/.claude/skills; if [ ! -d ~/.claude-configs ]; then git clone $CONFIG_REPO ~/.claude-configs 2>/dev/null; else cd ~/.claude-configs && git pull 2>/dev/null; fi; if [ -d ~/.claude-configs ]; then cp -v ~/.claude-configs/dot_claude/commands/*.md ~/.claude/commands/ 2>/dev/null; cp -v ~/.claude-configs/dot_claude/methodologies/*.md ~/.claude/methodologies/ 2>/dev/null; cp -rv ~/.claude-configs/dot_claude/skills/* ~/.claude/skills/ 2>/dev/null; echo '[Claude Config] Deployed commands, methodologies, and skills from shared repo. Update repo to update all projects.'; else echo '[Claude Config] Warning: Could not clone config repo. Configs not deployed.'; fi; fi"
       ],
-      "description": "Deploy slash commands from shared GitHub config repository",
+      "description": "Deploy slash commands, methodologies, and skills from shared GitHub config repository",
       "continueOnError": true
     }
   ],
-  "comment": "This hook clones/pulls your shared claude-configs repository and deploys commands to ~/.claude/. Replace YOUR_USERNAME with your GitHub username. Only runs on Web. Enables centralized config management across all projects."
+  "comment": "This hook clones/pulls your shared claude-configs repository and deploys commands, methodologies, and skills to ~/.claude/. Replace YOUR_USERNAME with your GitHub username. Only runs on Web. Enables centralized config management across all projects."
 }

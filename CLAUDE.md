@@ -31,8 +31,10 @@ claude-configs/
 │   ├── methodologies/       # Project methodology templates
 │   │   ├── migration.md    # Migration/rewrite projects
 │   │   └── greenfield.md   # New software development
-│   ├── personas/            # Claude personas (future)
-│   └── skills/              # Claude Skills (future)
+│   ├── skills/              # Claude Skills
+│   │   ├── test-driven-development/  # TDD workflow skill
+│   │   └── imagen/         # Image generation skill (Gemini API)
+│   └── personas/            # Claude personas (future)
 └── docs/                    # Documentation
 ```
 

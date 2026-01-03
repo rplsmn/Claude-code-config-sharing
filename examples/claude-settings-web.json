@@ -7,11 +7,11 @@
       "command": "bash",
       "args": [
         "-c",
-        "if [ \"$CLAUDE_CODE_REMOTE\" = \"true\" ]; then echo '[Claude Config] Deploying slash commands and methodologies for Web...'; mkdir -p ~/.claude/commands ~/.claude/methodologies; cp -v .claude/commands/*.md ~/.claude/commands/ 2>/dev/null || echo 'No project commands to deploy'; cp -rv .claude/methodologies/*.md ~/.claude/methodologies/ 2>/dev/null || echo 'No methodologies to deploy'; echo '[Claude Config] Deployment complete. Commands available: /code, /review, /lead, /research, /product, /devops'; fi"
+        "if [ \"$CLAUDE_CODE_REMOTE\" = \"true\" ]; then echo '[Claude Config] Deploying slash commands, methodologies, and skills for Web...'; mkdir -p ~/.claude/commands ~/.claude/methodologies ~/.claude/skills; cp -v .claude/commands/*.md ~/.claude/commands/ 2>/dev/null || echo 'No project commands to deploy'; cp -rv .claude/methodologies/*.md ~/.claude/methodologies/ 2>/dev/null || echo 'No methodologies to deploy'; cp -rv .claude/skills/* ~/.claude/skills/ 2>/dev/null || echo 'No skills to deploy'; echo '[Claude Config] Deployment complete. Commands: /code, /review, /lead, /research, /product, /devops | Skills: test-driven-development, imagen'; fi"
       ],
-      "description": "Deploy Claude Code configurations for Web environment",
+      "description": "Deploy Claude Code configurations (commands, methodologies, skills) for Web environment",
       "continueOnError": true
     }
   ],
-  "comment": "This SessionStart hook deploys slash commands and methodologies to ~/.claude/ on Claude Code Web. Only runs on Web (checks CLAUDE_CODE_REMOTE). Commands must be in .claude/commands/ in your repo."
+  "comment": "This SessionStart hook deploys slash commands, methodologies, and skills to ~/.claude/ on Claude Code Web. Only runs on Web (checks CLAUDE_CODE_REMOTE). Commands must be in .claude/commands/, methodologies in .claude/methodologies/, and skills in .claude/skills/ in your repo."
 }
