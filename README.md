@@ -31,6 +31,30 @@ Share Claude Code configurations (commands, skills, methodologies, personas) acr
 
 ## Quick Start
 
+### One-Line Install (Recommended)
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/rplsmn/Claude-code-config-sharing/main/web-install.sh | sh
+```
+
+Automatically downloads and installs all configs to `~/.claude/`
+
+---
+
+### Manual Install (If You Want to Inspect First)
+
+```bash
+# Clone and review
+git clone https://github.com/rplsmn/Claude-code-config-sharing.git
+cd Claude-code-config-sharing
+cat install.sh  # Review if desired
+
+# Install
+./install.sh
+```
+
+---
+
 ### Web Users (iOS app / browser at claude.ai/code)
 
 **Option 1: Project-level (simplest)**
@@ -48,17 +72,7 @@ cp examples/claude-settings-web.json .claude/settings.json
 # Hook will auto-deploy commands/skills on session start
 ```
 
-### CLI Users
-
-```bash
-# Deploy to global config (one-time per machine)
-cp -r dot_claude/commands ~/.claude/
-cp -r dot_claude/methodologies ~/.claude/
-cp -r dot_claude/skills ~/.claude/
-
-# Or deploy everything
-cp -r dot_claude/* ~/.claude/
-```
+---
 
 See [docs/QUICK_START.md](docs/QUICK_START.md) for detailed instructions.
 
