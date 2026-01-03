@@ -1,0 +1,17 @@
+{
+  "userPromptSubmitHooks": {
+    "enabled": false
+  },
+  "sessionStartHooks": [
+    {
+      "command": "bash",
+      "args": [
+        "-c",
+        "if [ \"$CLAUDE_CODE_REMOTE\" = \"true\" ]; then echo '[Claude Config] Deploying slash commands and methodologies for Web...'; mkdir -p ~/.claude/commands ~/.claude/methodologies; cp -v .claude/commands/*.md ~/.claude/commands/ 2>/dev/null || echo 'No project commands to deploy'; cp -rv .claude/methodologies/*.md ~/.claude/methodologies/ 2>/dev/null || echo 'No methodologies to deploy'; echo '[Claude Config] Deployment complete. Commands available: /code, /review, /lead, /research, /product, /devops'; fi"
+      ],
+      "description": "Deploy Claude Code configurations for Web environment",
+      "continueOnError": true
+    }
+  ],
+  "comment": "This SessionStart hook deploys slash commands and methodologies to ~/.claude/ on Claude Code Web. Only runs on Web (checks CLAUDE_CODE_REMOTE). Commands must be in .claude/commands/ in your repo."
+}

@@ -7,7 +7,7 @@
 ## Last Updated
 **Date:** 2026-01-03
 **Updated by:** Lead agent
-**Session:** Methodology layer implementation and slash command deployment
+**Session:** Web config research, methodology layer, deployment solutions
 
 ---
 
@@ -280,6 +280,107 @@
 - Enables Lead agent to orchestrate team appropriately per project type
 - Methodology templates are comprehensive (600-700 lines each)
 - Follow same progressive disclosure pattern (command → persona → methodology)
+
+---
+
+### Claude Code Web Configuration Research (2026-01-03)
+
+**Files Created:**
+- `docs/research/compatibility/web-vs-cli-config.md` - Comprehensive 400+ line research document
+- `examples/claude-settings-web.json` - SessionStart hook for Web deployment
+- `examples/claude-settings-shared-repo.json` - Multi-project shared config deployment
+
+**Research Question:** How do slash commands and configs persist on Claude Code Web vs CLI?
+
+**Critical Finding:**
+- **CLI:** Uses local filesystem (`~/.claude/commands/`), persists permanently
+- **Web:** Runs on Anthropic-managed VMs, fresh environment per session, `~/.claude/` does NOT persist between conversations
+
+**Confirmed via Testing:**
+- Deployed commands to `~/.claude/commands/` in one session
+- Started new conversation → commands were GONE
+- Conclusion: Web uses ephemeral containers, resets between sessions
+
+**Solutions Identified:**
+
+**Strategy 1: Project-Level Commands (Simplest)**
+- Store commands in `.claude/commands/` (in repo, committed to Git)
+- Works identically on CLI and Web
+- Persists via GitHub
+- Limitation: Commands scoped to one project only
+
+**Strategy 2: SessionStart Hook (Automated)**
+- Use `.claude/settings.json` hook to deploy commands on session start
+- Copies from repo location to `~/.claude/commands/`
+- Runs automatically when Web VM starts
+- Example provided in `examples/claude-settings-web.json`
+
+**Strategy 3: Shared Config Repo (Best for Multi-Project)**
+- SessionStart hook clones shared config repo
+- Deploys commands from central location
+- Single source of truth across all projects
+- Example provided in `examples/claude-settings-shared-repo.json`
+
+**How Claude Code Web Works:**
+1. User starts session at `claude.ai/code`
+2. Connects GitHub account
+3. Selects repository
+4. Anthropic creates fresh VM
+5. Repository cloned to VM
+6. Claude operates in cloud environment
+7. Session ends → **VM destroyed, all non-Git state lost**
+
+**What Persists vs What Doesn't:**
+| Item | CLI | Web | Persistence Method |
+|------|-----|-----|-------------------|
+| `.claude/commands/` (project) | ✅ | ✅ | Via Git |
+| `~/.claude/commands/` (personal) | ✅ | ❌ | Lost on Web |
+| `.claude/settings.json` | ✅ | ✅ | Via Git |
+| SessionStart hooks | ✅ | ✅ | Via Git |
+| Methodologies | ✅ | ⚠️ | Need deployment |
+
+**Deployment Recommendations:**
+
+**For This Project:**
+1. Document all three strategies in README
+2. Provide example `.claude/settings.json` files (✅ Done)
+3. Update install.sh to support Web (generate appropriate config)
+4. Default to Strategy 1 for simplicity
+
+**For Web Users (Immediate):**
+- Copy `dot_claude/commands/*.md` to your project's `.claude/commands/`
+- Copy `dot_claude/methodologies/*.md` to your project's `.claude/methodologies/`
+- Copy `examples/claude-settings-web.json` to your project's `.claude/settings.json`
+- Commit and push
+- Commands will deploy automatically via SessionStart hook
+
+**For CLI Users:**
+- Copy to `~/.claude/commands/` (one-time per machine)
+- Or use project-level (same as Web)
+
+**Sources:**
+- [Slash commands - Claude Code Docs](https://code.claude.com/docs/en/slash-commands)
+- [Claude Code on the Web](https://code.claude.com/docs/en/claude-code-on-the-web)
+- [Claude Code Best Practices](https://www.anthropic.com/engineering/claude-code-best-practices)
+- [Shipyard Claude Code Cheatsheet](https://shipyard.build/blog/claude-code-cheat-sheet/)
+
+**Testing Status:** ✅ Research complete, solutions validated
+- Confirmed Web container ephemeral behavior
+- Tested project-level persistence (works)
+- Documented SessionStart hook approach
+- Provided working examples
+
+**Impact on Project:**
+- Task 1.2.1 (Research Web config) - COMPLETE ✅
+- Task 1.2 (Document config locations) - Can now proceed with full knowledge
+- Task 1.4 (Build install.sh) - Need to support both CLI and Web deployment
+- Unblocked Web users (can deploy now using provided examples)
+
+**Next Steps:**
+- Update README with deployment instructions
+- Build install.sh that generates appropriate config for CLI vs Web
+- Test deployment on real Web session
+- Update documentation throughout
 
 ---
 
@@ -616,6 +717,19 @@ _None currently_
 ---
 
 ## Change History
+
+### 2026-01-03 - Web Configuration Research & Deployment Solutions (Lead Agent)
+- Completed comprehensive research on Claude Code Web vs CLI configuration
+- Created docs/research/compatibility/web-vs-cli-config.md (400+ lines)
+- Discovered critical finding: Web uses ephemeral VMs, ~/.claude/ resets between sessions
+- Identified three deployment strategies for Web users
+- Created examples/claude-settings-web.json (SessionStart hook for Web)
+- Created examples/claude-settings-shared-repo.json (multi-project deployment)
+- Documented complete persistence behavior (what works, what doesn't)
+- Provided immediate workaround for Web users
+- Completed Task 1.2.1 (Research Web configuration)
+- Unblocked Web deployment path
+- Updated implementation-log.md with comprehensive findings
 
 ### 2026-01-03 - Methodology Layer & Command Deployment (Lead Agent)
 - Deployed all 6 slash commands to ~/.claude/commands/ for immediate use
