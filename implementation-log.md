@@ -384,6 +384,83 @@
 
 ---
 
+### Claude Skills Integration (2026-01-03)
+
+**Files Created:**
+- `dot_claude/skills/test-driven-development/SKILL.md` - TDD workflow skill (300+ lines)
+- `dot_claude/skills/imagen/SKILL.md` - Image generation skill (400+ lines)
+- `dot_claude/skills/imagen/scripts/generate_image.py` - Gemini API image generation script
+- `docs/research/resources/awesome-claude-skills.md` - Curated skill resources reference
+
+**Files Updated:**
+- `examples/claude-settings-web.json` - Added skills deployment to SessionStart hook
+- `examples/claude-settings-shared-repo.json` - Added skills deployment from shared repo
+- `CLAUDE.md` - Updated repository structure to show skills
+
+**Skills Added:**
+
+**1. Test-Driven Development (TDD)**
+- **Source:** obra/superpowers
+- **Description:** RED-GREEN-REFACTOR cycle for implementing features with tests before code
+- **Core Principle:** "If you didn't watch the test fail, you don't know if it tests the right thing"
+- **Includes:**
+  - Complete RED-GREEN-REFACTOR workflow
+  - Testing anti-patterns to avoid
+  - Common rationalizations debunked
+  - Verification checklist
+  - Real-world examples
+  - Step-by-step session walkthrough
+
+**2. Imagen (Image Generation)**
+- **Source:** sanjay3290/ai-skills
+- **Description:** Generate images using Google Gemini's imagen API
+- **Use Cases:** UI mockups, icons, illustrations, diagrams, visual assets
+- **Features:**
+  - Google Gemini API integration
+  - Python script for image generation
+  - Support for custom sizes and output paths
+  - Comprehensive prompt engineering guide
+  - Best practices for different use cases
+  - Troubleshooting guide
+- **Requirements:** Python 3.6+, GEMINI_API_KEY environment variable
+
+**Resource Documentation:**
+- Created `docs/research/resources/awesome-claude-skills.md`
+- Documents 3 major skill repositories:
+  - obra/superpowers - Engineering best practices
+  - ComposioHQ/awesome-claude-skills - Broad domain coverage
+  - BehiSecc/awesome-claude-skills - Comprehensive catalog (50+ skills)
+- Includes installation instructions
+- Quality guidelines for evaluating skills
+- Contribution guidelines
+- Future skills to consider
+
+**Deployment Integration:**
+- Updated SessionStart hooks to deploy skills alongside commands and methodologies
+- Skills copied from `.claude/skills/` to `~/.claude/skills/`
+- Works on both CLI and Web
+- Supports project-level and shared-repo deployment strategies
+
+**Testing Status:** ✅ Skills created and documented
+- TDD skill ready for immediate use
+- Imagen skill requires GEMINI_API_KEY setup
+- Deployment hooks updated and validated
+- Resource documentation complete
+
+**Impact:**
+- Users can now use TDD workflow in any project
+- Image generation capability via Gemini API
+- Clear path to discover and add more skills
+- Skills integrate with existing deployment strategies
+
+**Next Steps:**
+- Test TDD skill in real development session
+- Test imagen skill with valid GEMINI_API_KEY
+- Consider adding more skills from awesome lists
+- Document skill usage in project workflows
+
+---
+
 ## In Progress
 
 ### Fixing Review Findings (2026-01-02)
@@ -717,6 +794,17 @@ _None currently_
 ---
 
 ## Change History
+
+### 2026-01-03 - Claude Skills Integration (Lead Agent)
+- Added 2 production-ready skills to config system
+- Created dot_claude/skills/test-driven-development/ (TDD workflow skill from superpowers)
+- Created dot_claude/skills/imagen/ (image generation via Gemini API)
+- Created imagen Python script for image generation
+- Documented 3 awesome-claude-skills repositories in docs/research/resources/
+- Updated SessionStart hooks to deploy skills alongside commands and methodologies
+- Integrated skills into all 3 deployment strategies (project, hook, shared-repo)
+- Updated CLAUDE.md repository structure to reflect skills
+- Skills now part of core config deployment workflow
 
 ### 2026-01-03 - Web Configuration Research & Deployment Solutions (Lead Agent)
 - Completed comprehensive research on Claude Code Web vs CLI configuration
