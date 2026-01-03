@@ -8,12 +8,21 @@
 
 ## Current Phase
 
-**Phase 1: Automation & Tooling - CORE COMPLETE**
+**Phase 2: DevContainer Feature - CORE COMPLETE**
+
+DevContainer Feature implemented (2026-01-03):
+- ✅ Feature structure created (src/claude-code-configs/)
+- ✅ devcontainer-feature.json with options
+- ✅ install.sh (downloads repo, deploys configs)
+- ✅ User documentation and examples
+- ⏳ Not yet published to GHCR (needs GitHub Actions + tag)
+
+**Phase 1: Automation & Tooling - COMPLETE**
 
 Essential automation implemented (2026-01-03):
 - ✅ install.sh script (backup, deploy, verify, rollback)
+- ✅ web-install.sh (one-line curl installer)
 - ✅ Global CLAUDE.md (universal workflow instructions)
-- ✅ Tested and working
 
 **Phase 0: Content Creation - COMPLETE**
 
@@ -36,20 +45,21 @@ All configuration content created:
 | Skills | ✅ Complete | dot_claude/skills/ |
 | Web deployment docs | ✅ Complete | docs/, examples/ |
 | Manual deployment | ✅ Works | See README.md |
-| Automation scripts | ✅ Core complete | install.sh |
+| Automation scripts | ✅ Complete | install.sh, web-install.sh |
+| DevContainer Feature | ✅ Core complete | src/claude-code-configs/ |
 
 ---
 
 ## Next Phase
 
-**Phase 1: Complete remaining items (OPTIONAL)**
+**Phase 2: Publish Feature (OPTIONAL)**
 
-Core automation complete. Optional enhancements:
-1. update.sh - Pull latest and redeploy (can use git pull + ./install.sh)
-2. Additional platform support (macOS testing)
-3. Integration tests
+Core feature complete. Optional publishing:
+1. Set up GitHub Actions workflow for auto-publishing
+2. Tag v1.0.0 release → auto-publish to GHCR
+3. Test published feature in real projects
 
-**Phase 2: chezmoi Integration (FUTURE)**
+**Phase 3: MCP Server (FUTURE)**
 
 See plan.md for full specification.
 
@@ -59,20 +69,25 @@ See plan.md for full specification.
 
 **Context:**
 - Repository cleanup complete (2026-01-03)
-- Phase 1 core automation complete (install.sh + global CLAUDE.md)
-- Repository is now working central source of truth
+- Phase 1 automation complete (install.sh + web-install.sh + global CLAUDE.md)
+- Phase 2 DevContainer Feature complete (src/claude-code-configs/)
+- Repository is production ready for all deployment methods
 
-**Status:** Repository is PRODUCTION READY
+**Status:** All core phases COMPLETE
 
 **Optional next tasks:**
-1. Create update.sh (convenience wrapper for git pull + install.sh)
-2. Test on macOS (currently tested on Linux only)
-3. Add integration tests
-4. Begin Phase 2 (chezmoi) if desired
+1. Set up GitHub Actions for auto-publishing Feature to GHCR
+2. Tag v1.0.0 to trigger publish
+3. Test published feature in real devcontainer
+4. Begin Phase 3 (MCP Server) if desired
+
+**Current usage:**
+- Host machines: `curl ... | sh` or `./install.sh`
+- Containers: Add feature to devcontainer.json (local path until published)
 
 **Before starting optional work:**
-1. Read plan.md for Phase 1 remaining items or Phase 2 spec
-2. Read ~/.claude/CLAUDE.md for workflow
+1. Read src/claude-code-configs/NOTES.md for publishing instructions
+2. Read plan.md for Phase 3 (MCP) spec
 3. Follow: make it work, commit increment, branch → PR
 
 ---
@@ -93,6 +108,16 @@ See plan.md for full specification.
 - Date: 2026-01-03
 - Rationale: Safe deployment with automatic recovery on failure
 - Result: Users can install confidently, previous config preserved
+
+**Decision 4: Skip chezmoi, prioritize DevContainers**
+- Date: 2026-01-03
+- Rationale: chezmoi adds complexity without clear benefit; containers more valuable
+- Result: Removed Phase 2 (chezmoi), made DevContainers Phase 2
+
+**Decision 5: DevContainer Feature structure**
+- Date: 2026-01-03
+- Rationale: Standard structure for publishing to GHCR, reusable across projects
+- Result: Feature auto-deploys configs when container starts
 
 ---
 
