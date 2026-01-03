@@ -1,0 +1,86 @@
+# Example: Using Claude Code Configs in Your Project
+
+This example shows how to add Claude Code configurations to any development container.
+
+## Simple Example
+
+Create `.devcontainer/devcontainer.json` in your project:
+
+```json
+{
+  "name": "My Risky Experiments",
+  "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
+
+  "features": {
+    "ghcr.io/rplsmn/Claude-code-config-sharing/claude-code-configs:1": {}
+  }
+}
+```
+
+Then:
+1. Open project in VS Code/Claude Code
+2. Click "Reopen in Container"
+3. Container starts with Claude configs pre-installed
+4. Use slash commands: `/code`, `/review`, `/lead`, etc.
+
+## With Node.js
+
+```json
+{
+  "name": "Node.js Project",
+  "image": "mcr.microsoft.com/devcontainers/javascript-node:20",
+
+  "features": {
+    "ghcr.io/rplsmn/Claude-code-config-sharing/claude-code-configs:1": {}
+  },
+
+  "postCreateCommand": "npm install"
+}
+```
+
+## With Python
+
+```json
+{
+  "name": "Python Project",
+  "image": "mcr.microsoft.com/devcontainers/python:3.11",
+
+  "features": {
+    "ghcr.io/devcontainers/features/git:1": {},
+    "ghcr.io/rplsmn/Claude-code-config-sharing/claude-code-configs:1": {}
+  },
+
+  "postCreateCommand": "pip install -r requirements.txt"
+}
+```
+
+## For Podman Users
+
+Configure VS Code to use Podman in `.vscode/settings.json`:
+
+```json
+{
+  "dev.containers.dockerPath": "podman"
+}
+```
+
+The same devcontainer.json works with both Docker and Podman!
+
+## Test It
+
+After container starts:
+```bash
+# Verify installation
+ls ~/.claude/commands/
+
+# Try a slash command in Claude Code
+# /code
+# /review
+```
+
+## Benefits
+
+- Install packages recklessly → no risk to host
+- Break things → rebuild container
+- Consistent Claude setup across all projects
+- Same commands in every container

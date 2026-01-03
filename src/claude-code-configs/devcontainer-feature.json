@@ -1,0 +1,26 @@
+{
+  "id": "claude-code-configs",
+  "version": "1.0.0",
+  "name": "Claude Code Configurations",
+  "description": "Automatically deploy Claude Code slash commands, personas, methodologies, and skills to container",
+  "documentationURL": "https://github.com/rplsmn/Claude-code-config-sharing",
+  "options": {
+    "configBranch": {
+      "type": "string",
+      "default": "main",
+      "description": "Git branch to pull configurations from"
+    },
+    "deployToRoot": {
+      "type": "boolean",
+      "default": false,
+      "description": "Deploy to /root/.claude instead of remote user's home"
+    }
+  },
+  "installsAfter": [
+    "ghcr.io/devcontainers/features/common-utils",
+    "ghcr.io/devcontainers/features/git"
+  ],
+  "containerEnv": {
+    "CLAUDE_CONFIGS_INSTALLED": "true"
+  }
+}

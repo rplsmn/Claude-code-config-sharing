@@ -276,8 +276,18 @@ claude-configs/
 
 ---
 
-### Phase 1: Core Git + Script Foundation (NOT STARTED)
+### Phase 1: Core Git + Script Foundation (COMPLETE ✅)
 **Goal:** Automate deployment with install script
+
+**Status:** Complete (2026-01-03)
+
+**Deliverables:**
+- ✅ install.sh - Automated deployment with backup/rollback
+- ✅ web-install.sh - One-line curl installer
+- ✅ Global CLAUDE.md - Universal workflow instructions
+- ✅ Tested and working
+
+**Result:** Users can install with one command or inspect-first workflow.
 
 **Tasks:**
 1. Create repository structure
@@ -295,25 +305,7 @@ claude-configs/
 
 ---
 
-### Phase 2: chezmoi Integration (Enhanced)
-**Goal:** Smart, template-based configuration management
-
-**Tasks:**
-1. Convert repository to chezmoi format
-2. Create machine-specific templates
-3. Add encryption for sensitive data
-4. Write migration guide from Phase 1
-5. Test across all Linux machines
-6. Update documentation
-
-**Deliverables:**
-- chezmoi-managed configs
-- Template examples
-- Migration guide
-
----
-
-### Phase 3: DevContainer Feature (Container Support)
+### Phase 2: DevContainer Feature (NEXT - Container Support)
 **Goal:** Automatic config setup in Podman containers
 
 **Tasks:**
@@ -330,7 +322,7 @@ claude-configs/
 
 ---
 
-### Phase 4: MCP Server (Advanced Automation)
+### Phase 3: MCP Server (FUTURE - Advanced Automation)
 **Goal:** Native Claude Code integration for config sync
 
 **Tasks:**
