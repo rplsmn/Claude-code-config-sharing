@@ -24,10 +24,16 @@ claude-configs/
 │   ├── commands/            # Slash commands
 │   │   ├── code.md         # /code - Activate coding workflow
 │   │   ├── review.md       # /review - Activate review workflow
-│   │   └── lead.md         # /lead - Activate architect/planning mode
+│   │   ├── lead.md         # /lead - Activate architect/planning mode
+│   │   ├── research.md     # /research - Activate researcher workflow
+│   │   ├── product.md      # /product - Activate product workflow
+│   │   └── devops.md       # /devops - Activate devops workflow
+│   ├── methodologies/       # Project methodology templates
+│   │   ├── migration.md    # Migration/rewrite projects
+│   │   └── greenfield.md   # New software development
 │   ├── personas/            # Claude personas (future)
 │   └── skills/              # Claude Skills (future)
-└── docs/                    # Documentation (future)
+└── docs/                    # Documentation
 ```
 
 ---
@@ -40,6 +46,70 @@ This project solves the problem of managing Claude Code configurations across mu
 3. Version control all configs
 4. Support dev containers (Podman)
 5. Minimize setup time (< 2 minutes per machine)
+
+---
+
+## Project Methodology
+
+**THIS PROJECT:** Configuration Management System / Greenfield Development
+
+**Methodology:** See `dot_claude/methodologies/greenfield.md` for complete workflow
+
+### Quick Methodology Summary
+
+This project follows the **Greenfield Methodology** because we're building a new configuration management system from scratch.
+
+**Key Characteristics:**
+- **Phased approach**: Product validation → Architecture → Foundation → MVP → Launch → Iteration
+- **Persona sequence**: Product → Lead → DevOps (foundation) → Coding → Review (features)
+- **Quality gates**: Product validation, Architecture approval, MVP complete, Post-launch validation
+- **Principle**: Validate before building, design before implementing, quality from day one
+
+**Primary Flow:**
+```
+Product (validate) → Lead (design) → DevOps (infrastructure) → Coding (implement) → Review (validate)
+└──────────────────────────┬──────────────────────────┘
+                           │
+                           └──→ Iterate for each feature
+```
+
+### When Methodology Doesn't Apply
+
+For **ad-hoc tasks** (bug fixes, documentation updates, small improvements):
+- Skip formal methodology
+- Go directly to appropriate agent (Coding, Review, etc.)
+- Use common sense
+
+### Other Available Methodologies
+
+Our config system provides methodology templates for different project types:
+
+**Migration Methodology** (`dot_claude/methodologies/migration.md`):
+- For migrating/rewriting existing systems
+- Discovery → Test Suite → Slice Planning → Domain Migration Loop → Evolutions
+- Heavy emphasis on reverse engineering and test coverage
+
+**Future Methodologies** (coming soon):
+- Data Analysis Methodology
+- ML Pipeline Methodology
+- Complex ETL Methodology
+
+**Using Methodologies in Your Projects:**
+
+Once this config system is deployed, ANY project can reference a methodology:
+
+```markdown
+# In your-project/.claude/CLAUDE.md
+
+**Methodology:** Migration (see ~/.claude/methodologies/migration.md)
+
+**Project Context:**
+- Migrating from: Java Spring Boot
+- Migrating to: Node.js/TypeScript
+- Priority: Login → Orders → Payments → Reports
+```
+
+The Lead agent will read the methodology and orchestrate the team accordingly.
 
 ---
 
@@ -57,6 +127,9 @@ This project solves the problem of managing Claude Code configurations across mu
 - **Coding agents:** Use `/code` command (references `persona-coding.md` for comprehensive details)
 - **Review agents:** Use `/review` command (references `persona-review.md` for comprehensive details)
 - **Lead/Architect agents:** Use `/lead` command (references `persona-lead.md` for comprehensive details)
+- **Researcher agents:** Use `/research` command (references `persona-researcher.md` for comprehensive details)
+- **Product agents:** Use `/product` command (references `persona-product.md` for comprehensive details)
+- **DevOps agents:** Use `/devops` command (references `persona-devops.md` for comprehensive details)
 
 ### Workflow for Coding Agent
 
@@ -476,12 +549,21 @@ git push -u origin $(git branch --show-current)
 - **Researcher agents:** `/research` command (see `dot_claude/commands/research.md`)
   - References `persona-researcher.md` for comprehensive details
   - For investigating solutions, frameworks, best practices, debugging
+- **Product agents:** `/product` command (see `dot_claude/commands/product.md`)
+  - References `persona-product.md` for comprehensive details
+  - For feature validation, prioritization, UX review
+- **DevOps agents:** `/devops` command (see `dot_claude/commands/devops.md`)
+  - References `persona-devops.md` for comprehensive details
+  - For deployment, infrastructure, monitoring, reliability
 
 **Before starting work:**
 1. Read instruction files (plan.md, implementation-log.md, qa-review.md, CLAUDE.md)
-2. Use `/code`, `/review`, `/lead`, or `/research` command to activate workflow
-3. Create todo list with TodoWrite
-4. Mark task in_progress
+2. Read project methodology (dot_claude/methodologies/greenfield.md for this project)
+3. Use appropriate slash command to activate workflow:
+   - `/code` (coding), `/review` (review), `/lead` (architecture)
+   - `/research` (investigation), `/product` (validation), `/devops` (deployment)
+4. Create todo list with TodoWrite
+5. Mark task in_progress
 
 **After completing work:**
 1. Update implementation-log.md

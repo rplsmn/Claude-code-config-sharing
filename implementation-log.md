@@ -5,9 +5,9 @@
 ---
 
 ## Last Updated
-**Date:** 2026-01-02
-**Updated by:** Initial setup agent
-**Session:** Project initialization
+**Date:** 2026-01-03
+**Updated by:** Lead agent
+**Session:** Methodology layer implementation and slash command deployment
 
 ---
 
@@ -212,6 +212,74 @@
   4. Researcher (Investigation)
   5. Product (Feature validation, UX)
   6. DevOps (Deployment, reliability)
+
+---
+
+### Methodology Layer Implementation (2026-01-03)
+
+**Files Created:**
+- `dot_claude/methodologies/migration.md` - Migration methodology template (700+ lines)
+- `dot_claude/methodologies/greenfield.md` - Greenfield methodology template (600+ lines)
+
+**Files Updated:**
+- `CLAUDE.md` - Added "Project Methodology" section with references to methodology templates
+- Repository structure updated to show all 6 slash commands and methodologies directory
+
+**Why:**
+- Enable context-aware team coordination based on project type
+- Different projects need different workflows (migration vs greenfield vs data analysis)
+- Provide reusable methodology templates that projects can reference
+- Lead agent can orchestrate team based on methodology
+
+**What Was Created:**
+
+**Migration Methodology** (`dot_claude/methodologies/migration.md`):
+- For migrating/rewriting existing systems (e.g., Java→TypeScript)
+- 5 phases: Discovery → Test Suite → Slice Planning → Domain Migration Loop → Evolutions
+- Persona sequence: Researcher (discovery) → Coding (tests) → Lead (plan) → Loop(Lead→Coding→Review→Lead) → DevOps (deploy)
+- Heavy emphasis on reverse engineering, test coverage, logical dependency order
+- Includes Discovery Agent workflow, AST tracking, domain slicing strategies
+- Quality gates at each phase
+- Example: Java Spring → Node.js migration
+
+**Greenfield Methodology** (`dot_claude/methodologies/greenfield.md`):
+- For building new software from scratch
+- 6 phases: Product Discovery → Architecture → Foundation → MVP Loop → Launch → Iteration
+- Persona sequence: Product (validate) → Lead (design) → DevOps (foundation) → Loop(Coding→Review→Product) → DevOps (deploy)
+- Emphasis on validate before building, design before implementing, quality from day one
+- Includes 5-question validation framework, MoSCoW prioritization, TDD workflow
+- Quality gates at each phase
+- Example: Building REST API service from scratch
+
+**Integration with CLAUDE.md:**
+- Added "Project Methodology" section explaining this project uses Greenfield methodology
+- Shows how other projects can reference methodologies in their .claude/CLAUDE.md
+- Updated repository structure to show methodologies/ directory
+- Updated all references to include all 6 personas (Coding, Review, Lead, Researcher, Product, DevOps)
+- Added methodology reading to "Before starting work" checklist
+
+**Future Methodologies Planned:**
+- Data Analysis Methodology (one-shot analysis, exploratory coding)
+- ML Pipeline Methodology (experiment tracking, model training, deployment)
+- Complex ETL Methodology (data validation, transformation, pipeline orchestration)
+
+**Testing Status:** ⚠️ Templates created but not yet tested in real project
+- Need to validate migration methodology works on actual migration
+- Need to validate greenfield methodology works on new project
+- Methodologies will evolve based on real usage
+
+**Deployment:**
+- Methodology templates exist in repository
+- Will be deployed to ~/.claude/methodologies/ via install.sh (Phase 1.4)
+- Users can reference via: `**Methodology:** Migration (see ~/.claude/methodologies/migration.md)`
+
+**Notes:**
+- User requested this after seeing patterns in different project types
+- Addresses gap: "How do personas work together for THIS type of project?"
+- Provides strategic layer above tactical persona instructions
+- Enables Lead agent to orchestrate team appropriately per project type
+- Methodology templates are comprehensive (600-700 lines each)
+- Follow same progressive disclosure pattern (command → persona → methodology)
 
 ---
 
@@ -548,6 +616,18 @@ _None currently_
 ---
 
 ## Change History
+
+### 2026-01-03 - Methodology Layer & Command Deployment (Lead Agent)
+- Deployed all 6 slash commands to ~/.claude/commands/ for immediate use
+- Created dot_claude/methodologies/ directory structure
+- Built migration.md methodology template (700+ lines)
+- Built greenfield.md methodology template (600+ lines)
+- Updated CLAUDE.md with "Project Methodology" section
+- Updated repository structure documentation (all 6 commands + methodologies)
+- Updated all persona references throughout CLAUDE.md
+- Confirmed Claude Code Web uses fresh containers per conversation
+- Implemented strategic layer for project-type-specific workflows
+- Updated implementation-log.md with comprehensive documentation
 
 ### 2026-01-02 - Team Structure Analysis (Lead Agent)
 - Created docs/TEAM_STRUCTURE.md (comprehensive team analysis)
